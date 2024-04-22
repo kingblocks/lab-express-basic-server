@@ -1,6 +1,6 @@
 // IMPORT PACKAGES
 // Here you should import the required packages for your Express app: `express` and `morgan`
-
+ 
 const express = require("express");
 const morgan = require("morgan"); 
 
@@ -30,6 +30,18 @@ app.get("/blog", (req, res) => {
     res.sendFile(__dirname + "/views/blog.html");
 })
 
+app.get("/projects", (req, res) => {
+    res.sendFile(__dirname + "/views/projects.html");
+})
+
+app.get("/api/articles", (req, res) => {
+    res.json(articles);
+})
+
+app.use ((req, res, next) => {
+    res.status(404).sendFile(__dirname + "/views/not-found.html");
+    
+})
 
 // START THE SERVER
 // Make your Express server listen on port 5005:
